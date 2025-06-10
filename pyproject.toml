@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=65.0", "setuptools_scm[toml]>=7.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optdesign"
+authors = [
+  { name="Toon Verstraelen", email="toon.verstraelen@ugent.be" },
+]
+description = "Simple Python implementation of linear optimal design algorithms."
+readme = "README.md"
+license = "LGPL-3.0-or-later"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "numpy>=1.23.3",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+docs = [
+    "matplotlib>=3.7.0",
+    "jupyter>=1.1.1",
+    "ipykernel>=6.29.5",
+]
+tests = [
+    "pytest>=8.4.0",
+    "pytest-rng>=1.0.0"
+]
+
+[project.urls]
+Source = "https://github.com/molmod/optdesign/"
+
+[tool.pytest.ini_options]
+addopts = "-W error"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "A", "B", "BLE", "C4", "E", "EXE", "F", "I", "ICN", "ISC", "N", "NPY", "PERF", "PIE",
+    "PL", "PT", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TRY", "UP", "W"
+]
+ignore = [
+    "ISC001",  # https://docs.astral.sh/ruff/rules/single-line-implicit-string-concatenation/
+    "PLR0904",  # https://docs.astral.sh/ruff/rules/too-many-public-methods/
+    "PLR0911",  # https://docs.astral.sh/ruff/rules/too-many-return-statements/
+    "PLR0912",  # https://docs.astral.sh/ruff/rules/too-many-branches/
+    "PLR0913",  # https://docs.astral.sh/ruff/rules/too-many-arguments/
+    "PLR0914",  # https://docs.astral.sh/ruff/rules/too-many-locals/
+    "PLR0915",  # https://docs.astral.sh/ruff/rules/too-many-statements/
+    "PLR0916",  # https://docs.astral.sh/ruff/rules/too-many-boolean-expressions/
+    "PLR0917",  # https://docs.astral.sh/ruff/rules/too-many-positional/
+    "PLR2004",  # https://docs.astral.sh/ruff/rules/magic-value-comparison/
+    "PT011",  # https://docs.astral.sh/ruff/rules/pytest-raises-too-broad/
+    "RUF001",  # https://docs.astral.sh/ruff/rules/ambiguous-unicode-character-string/
+    "TRY003",  # https://docs.astral.sh/ruff/rules/raise-vanilla-args/
+]
