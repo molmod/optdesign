@@ -48,9 +48,9 @@ and the D-optimality criterion.
 
 Consider the following linear set of equations:
 
-$$
-  \mathbf{y} = \mathbf{X} \hat{\mathbf{\beta}} + \hat{\mathbf{\epsilon}}
-$$
+```math
+\mathbf{y} = \mathbf{X} \hat{\mathbf{\beta}} + \hat{\mathbf{\epsilon}}
+```
 
 where $\mathbf{y}$ is the vector of observations, $\mathbf{X}$ is the design matrix,
 $\hat{\mathbf{\beta}}$ is the vector of coefficients, and $\hat{\mathbf{\epsilon}}
@@ -62,25 +62,28 @@ and identically distributed (i.i.d.) with mean zero and variance $\sigma^2$.
 
 The solution of this system of equations is given by:
 
-$$
-  \hat{\mathbf{\beta}}
-  = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top (\mathbf{y} - \hat{\mathbf{\epsilon}})
-$$
+```math
+\hat{\mathbf{\beta}}
+= (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top (\mathbf{y} - \hat{\mathbf{\epsilon}})
+```
 
 The expected value of the parameter vector $\mathbf{\beta}$ is then simply given by:
 
-$$
-  \mathbf{\beta}
-  = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
-$$
+```math
+\mathbf{\beta}
+= (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
+```
 
-where we use the notation $E[\hat{\mathbf{\beta}}] = \mathbf{\beta}$.
+where we use the notation
+
+```math
+\mathrm{E}[ \hat{\mathbf{\beta}} ] = \mathbf{\beta}
+```
 The covariance matrix of the parameter vector $\mathbf{\beta}$ is given by:
 
-$$
-  \operatorname{COV}[\hat{\beta}_i, \hat{\beta}_j]
-  = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ij}
-$$
+```math
+\mathrm{COV}[\hat{\beta}_i, \hat{\beta}_j] = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ij}
+```
 
 The covariance matrix is thus known before the experiment is performed,
 i.e. before $\mathbf{y}$ is observed.
@@ -93,9 +96,9 @@ The goal of the $D$-optimality criterion is to choose the design matrix $\mathbf
 such that the determinant of the covariance matrix is minimized.
 In other words, we want to maximize the following determinant:
 
-$$
-  |\mathbf{X}^\top \mathbf{X}|
-$$
+```math
+|\mathbf{X}^\top \mathbf{X}|
+```
 
 This can be seen as a measure of the "volume" of the
 [information matrix](https://en.wikipedia.org/wiki/Fisher_information)
@@ -106,9 +109,9 @@ we will make use of the
 [Singular Value Decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition)
 (SVD) of the design matrix $\mathbf{X}$:
 
-$$
-  \mathbf{X} = \mathbf{U} \mathbf{s} \mathbf{V}^\top
-$$
+```math
+\mathbf{X} = \mathbf{U} \mathbf{s} \mathbf{V}^\top
+```
 
 where $\mathbf{U}$ and $\mathbf{V}^\top$ have orthogonal columns,
 and $\mathbf{s}$ is a diagonal matrix with the singular values.
@@ -118,9 +121,9 @@ and the matrix $\mathbf{V}$ is a square matrix.
 
 The determinant of the information matrix can then be expressed as:
 
-$$
-  |\mathbf{X}^\top \mathbf{X}| = |\mathbf{s}^2| = \prod_{n=1}^N s_n^2
-$$
+```math
+|\mathbf{X}^\top \mathbf{X}| = |\mathbf{s}^2| = \prod_{n=1}^N s_n^2
+```
 
 where $N$ is the number of singular values (and unknowns).
 If $\mathbf{X}$ is singular, the volume is obviously zero.
@@ -135,19 +138,22 @@ Here we will show how to compute the change in determinant after this addition.
 
 Consider the following addition of a row vector $\mathbf{a}^\top$ to the design matrix $\mathbf{X}$:
 
-$$
-  \mathbf{X}^\text{add}
-  = \begin{bmatrix} \mathbf{X} \\\hline \\[-0.9em] \mathbf{a}^\top \end{bmatrix}
-$$
+```math
+\mathbf{X}^\text{add}
+= \begin{bmatrix}
+  \mathbf{X} \\
+  \mathbf{a}^\top
+\end{bmatrix}
+```
 
 We work out the determinant after row addition
 by making use of the SVD of the initial design matrix
 $\mathbf{X} = \mathbf{U} \mathbf{s} \mathbf{V}^\top$:
 
-$$
-  \left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
-  = \left|\mathbf{V}^\top \mathbf{s}^2 \mathbf{V} + \mathbf{a} \mathbf{a}^\top\right|
-$$
+```math
+\left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
+= \left|\mathbf{V}^\top \mathbf{s}^2 \mathbf{V} + \mathbf{a} \mathbf{a}^\top\right|
+```
 
 The second term is a rank-1 matrix.
 We now make use of the following properties of matrix determinants:
@@ -157,29 +163,29 @@ We now make use of the following properties of matrix determinants:
 
 Left-multiplying with $\mathbf{V}$ and right-multiplying with $\mathbf{V}^\top$ yields:
 
-$$
-  \left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
-  = \left|\mathbf{s}^2 + \mathbf{V}  \mathbf{a} \mathbf{a}^\top \mathbf{V}^\top \right|
-$$
+```math
+\left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
+= \left|\mathbf{s}^2 + \mathbf{V}  \mathbf{a} \mathbf{a}^\top \mathbf{V}^\top \right|
+```
 
 Then we factor out the singular values:
 
-$$
-  \left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
-  = |\mathbf{s}|^2
-    \left|
-        \mathbf{I} +
-        \mathbf{s}^{-1} \mathbf{V} \mathbf{a} \mathbf{a}^\top \mathbf{V}^\top \mathbf{s}^{-1}
-    \right|
-$$
+```math
+\left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
+= |\mathbf{s}|^2
+  \left|
+      \mathbf{I} +
+      \mathbf{s}^{-1} \mathbf{V} \mathbf{a} \mathbf{a}^\top \mathbf{V}^\top \mathbf{s}^{-1}
+  \right|
+```
 
 For the last step, we introduce $\mathbf{u} = \mathbf{s}^{-1} \mathbf{V}  \mathbf{a}$,
 to clarify that the first factor is the determinant of an identity matrix plus a rank-1 update:
 
-$$
-    \left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
-    = |\mathbf{s}|^2 \left| \mathbf{I} + \mathbf{u} \mathbf{u}^\top \right|
-$$
+```math
+\left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
+= |\mathbf{s}|^2 \left| \mathbf{I} + \mathbf{u} \mathbf{u}^\top \right|
+```
 
 The matrix in the second determinant is diagonal in any basis
 where $\mathbf{u}$ is one of the basis vectors,
@@ -187,19 +193,18 @@ with corresponding eigenvalue $1 + \|\mathbf{u}\|^2$.
 All other eigenvalues are equal to $1$.
 Hence, the determinant can be computed as:
 
-$$
-  \left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
-  = \left|\mathbf{X}^\top \mathbf{X}\right| (1 + \|\mathbf{u}\|^2)
-$$
+```math
+\left|\left(\mathbf{X}^\text{add}\right)^\top \mathbf{X}^\text{add}\right|
+= \left|\mathbf{X}^\top \mathbf{X}\right| (1 + \|\mathbf{u}\|^2)
+```
 
 The second factor expresses the change in determinant
 after the addition of the new vector $\mathbf{a}$.
 One can rewrite this in a more convenient form:
 
-$$
-  1 + \|\mathbf{u}\|^2
-  = 1 + \mathbf{a}^\top \mathbf{V} \mathbf{s}^{-2}\, \mathbf{V}^\top \mathbf{a}
-$$
+```math
+1 + \|\mathbf{u}\|^2
+```
 
 When testing a large set of candidate vectors $\mathbf{a}$,
 one performs the SVD of the design matrix $\mathbf{X}$ only once,
@@ -223,11 +228,11 @@ and directly compute the change in volume due to the replacement.
 The derivation of this algorithm makes use of Cramer's rule,
 which can be used to express the inverse of a matrix as:
 
-$$
-  \mathbf{X}^{-1} = \frac{1}{|\mathbf{X}|} \operatorname{adj}(\mathbf{X})
-$$
+```math
+\mathbf{X}^{-1} = \frac{1}{|\mathbf{X}|} \mathrm{adj}(\mathbf{X})
+```
 
-where $\operatorname{adj}(\mathbf{X})$ is the adjugate of the matrix $\mathbf{X}$,
+where $\mathrm{adj}(\mathbf{X})$ is the adjugate of the matrix $\mathbf{X}$,
 i.e. the transpose matrix of cofactors.
 Each cofactor is the determinant of the matrix
 after removing the corresponding row and column from $\mathbf{X}$.
@@ -237,40 +242,39 @@ which is obtained by replacing a row $k$ in $\mathbf{X}$
 with a new vector $\mathbf{r}^\top$.
 The determinant of the new matrix $\mathbf{X}'$ can be expressed as:
 
-$$
-  |\mathbf{X}'| \mathbf{I}
-  = \mathbf{X}' \operatorname{adj}(\mathbf{X'})
-$$
+```math
+|\mathbf{X}'| \mathbf{I}
+= \mathbf{X}' \mathrm{adj}(\mathbf{X'})
+```
 
 Of this matrix identify, we need only the diagonal element with indexes $(k, k)$:
 
-$$
-  |\mathbf{X}'|
-  = \sum_{\ell=1}^N
-    \mathbf{r}_{\ell} \Bigl[\operatorname{adj}(\mathbf{X'})\Bigr]_{\ell k}
-
-$$
+```math
+|\mathbf{X}'|
+= \sum_{\ell=1}^N
+  \mathbf{r}_{\ell} \Bigl[\mathrm{adj}(\mathbf{X'})\Bigr]_{\ell k}
+```
 
 Because $\mathbf{X}$ and $\mathbf{X}'$ differ only in row $k$,
-the column they have the matrix elements $\Bigl[\operatorname{adj}(\mathbf{X'})\Bigr]_{\ell k}$
+the column they have the matrix elements $\Bigl[\mathrm{adj}(\mathbf{X'})\Bigr]_{\ell k}$
 for all $\ell \in \{1, \ldots, N\}$. Hence, we can replace the adjugate matrix,
 and rewrite it in terms of $\mathbf{X}^{-1}$ and $|\mathbf{X}|$:
 
-$$
-  |\mathbf{X}'|
-  = \sum_{\ell=1}^N
-    \mathbf{r}_{\ell} \Bigl[\operatorname{adj}(\mathbf{X})\Bigr]_{\ell k}
-  = |\mathbf{X}| \sum_{\ell=1}^N
-    \mathbf{r}_{\ell} \Bigl[\mathbf{X}^{-1}\Bigr]_{\ell k}
-$$
+```math
+|\mathbf{X}'|
+= \sum_{\ell=1}^N
+  \mathbf{r}_{\ell} \Bigl[\mathrm{adj}(\mathbf{X})\Bigr]_{\ell k}
+= |\mathbf{X}| \sum_{\ell=1}^N
+  \mathbf{r}_{\ell} \Bigl[\mathbf{X}^{-1}\Bigr]_{\ell k}
+```
 
 In conclusion, the change in determinant after replacing a row $k$ in $\mathbf{X}$
 with a new vector $\mathbf{r}^\top$ is given by the following simple expression:
 
-$$
-  \frac{|\mathbf{X}'|}{|\mathbf{X}|}
-  = (\mathcal{r} \mathbf{X}^{-1})_k
-$$
+```math
+\frac{|\mathbf{X}'|}{|\mathbf{X}|}
+= (\mathcal{r} \mathbf{X}^{-1})_k
+```
 
 If one has a matrix $\mathbf{C}$ whose rows are all candidate vectors $\mathbf{r}^\top$,
 one can compute the change in determinant for all combinations of candidates and rows to replace
