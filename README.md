@@ -204,6 +204,7 @@ One can rewrite this in a more convenient form:
 
 ```math
 1 + \|\mathbf{u}\|^2
+= 1 + \mathbf{a}^\top \mathbf{V} \mathbf{s}^{-2}\, \mathbf{V}^\top \mathbf{a}
 ```
 
 When testing a large set of candidate vectors $\mathbf{a}$,
