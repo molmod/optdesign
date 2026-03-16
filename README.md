@@ -79,6 +79,7 @@ where we use the notation
 ```math
 \mathrm{E}[ \hat{\mathbf{\beta}} ] = \mathbf{\beta}
 ```
+
 The covariance matrix of the parameter vector $\mathbf{\beta}$ is given by:
 
 ```math
